@@ -1,11 +1,13 @@
 # What is Roboprose
 
-Roboprose is prose that you setup so that the robots are able to write on your behalf. The below workflow
-will enable you to generate automatically filled contracts, agreements, letters, reports and more. 
-The idea hear is to use templating tools to streamline business and data science workflows enabling you to create data driven 
-documents. In the below examples I use the command line tool `jinja2` from the [`jinja2-cli`](https://pypi.org/project/jinja2-cli/) python package. 
+Roboprose is prose that you setup so that your computer (the robot) is able to write on your behalf. The below workflow
+will enable you to generate automatically filled contracts, agreements, invoices, letters, reports and more. 
+The idea here is to use templating tools to streamline business and data science workflows enabling you to create data driven 
+documents. In the below examples I use the command line tool `jinja2` from the [`jinja2-cli`](https://pypi.org/project/jinja2-cli/) python package. There are tools like `knitr` and RMarkdown which do this as well, this is a lightweight, small-tools approach that can be integrated with many other stystmes and tools. At the end I show an example of using pandoc to create styled Word documents or HTML web pages. 
 
-# Installation 
+# Installing Jinja2-cli
+
+The Jinja2-cli is a python package that will give us a command-line tool `jinja2` which will let us fill templates from the shell.
 
 ```
 pip3 install jinja2-cli 
