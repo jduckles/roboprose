@@ -21,8 +21,8 @@ Sincerely,
 Accounting
 ```
 This would be able to merge a data file of the form:
-|first_name | last_name | overdue_date | amount_due
-|----|-------|----------|--------------|-----------
+|first_name | last_name | overdue_date | amount_due |
+|----|-------|----------|--------------|-----------|
 |Adam | Smith | 2019-01-01 | $10 |
 |Bob | Armstrong | 2018-02-03| $20|
 
@@ -98,16 +98,16 @@ jinja2 examples/proposal.md examples/proposal1.yml > proposal1.md
 jinja2 examples/proposal.md examples/proposal2.yml > proposal2.md
 
 pandoc -f markdown proposal1.md -o proposal1.docx
-pandoc -f markdown proposal2.md -o proposal2.docx 
+pandoc -f markdown proposal2.md -o proposal2.docx
 ```
 
 Proposal 1:
-
-![](https://jduckles-dropshare.s3-us-west-2.amazonaws.com/Screen-Shot-2019-05-23-16-47-13.46.png)
+![](https://jduckles-dropshare.s3-us-west-2.amazonaws.com/Screen-Shot-2019-05-23-16-46-17.86.png)
 
 Proposal 2:
 
-![](https://jduckles-dropshare.s3-us-west-2.amazonaws.com/Screen-Shot-2019-05-23-16-46-17.86.png)
+![](https://jduckles-dropshare.s3-us-west-2.amazonaws.com/Screen-Shot-2019-05-23-16-47-13.46.png)
+
 
 ## Application areas
 
@@ -116,5 +116,3 @@ Proposal 2:
 * Invoices
 * Customized and data-drive reports
 * More!
-
-
