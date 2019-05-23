@@ -1,35 +1,67 @@
+# What is Roboprose
+
+Roboprose is prose that you setup so that the robots are able to write on your behalf. The below workflow
+will enable you to generate automatically filled contracts, agreements, letters, reports and more. 
+The idea hear is to use templating tools to streamline business and data science workflows enabling you to create data driven 
+documents. In the below examples I use the command line tool `jinja2` from the [`jinja2-cli`](https://pypi.org/project/jinja2-cli/) python package. 
+
+# Installation 
+
+```
+pip3 install jinja2-cli 
+```
+
 # Generating Roboprose with Jinja2
 
 The [Jinja2 template engine](http://jinja.pocoo.org/docs/2.10/templates/) is a piece of Python
-code that can be used to develop automatically generated prose which fills in various variables
-based on a dataset provided. This can of course be integrated into web pages or driven by databases.
-However, for simple applications, it can be useful to think of this ability to generate roboprose
+code that can be used to create templates and fill them with data (called the context in Jinja2). 
+
+A simple Jinja template might look like:
+
+```
+Hello {{ first_name }}, how are you today?
+```
+
+When provided a python dictionary of values (the **context**) we can fill the **template**. So in this 
+simple case our context could be the python dictionary:
+
+```
+{ "first_name": "Albert"}
+```
+
+Using Jinja2 in Python we can **fill** a **template** with a **context**. We're going to use the `jinja2-cli` which will 
+enable us to use, rather than using Python dictionaries, fill templates with yaml, json, ini files, or URL 
+query strings. In the below examples we'll use yaml because of its simple and easy to read syntax. `jinja2-cli` will also enable us to specify key-valu pairs with the `-D` option so we can pass values in without creating a file. 
+
+
+For simple applications, it can be useful to think of this ability to generate roboprose
 as similar to the mail merge functionality in office document tools. These are the tools that generate
 form letters or print address labels, or envelopes, they take a set of data and make multiple documents
-from an iteration across those data.
-
-We can also use this kind of workflow and the flexibility of the Jinja template engine allowing templates
-to contain logic. This is an advancement from the way office tools will merge keys into a given location.
+for say each roww in a spreadsheet or csv table. An example of an email workflow using Jinja2 at [jduckles/emailutil](https://github.com/jduckles/emailutil)
 
 Example of a simple template (using Office/Word style syntax `<< >>`:
 ```
-Hello <<first_name>> <<last_name>>,
+Hello {{ first_name }} {{ last_name }},
 
-We see that your account is overdue since <<overdue_date>> by <<amount_due>>
+We see that your account is overdue since {{ overdue_date }}  by  {{ amount_due }}.
 
 Sincerely,
 Accounting
 ```
-This would be able to merge a data file of the form:
+
+If we looped over the rows in the following table:
 
 | first_name | last_name | overdue_date | amount_due |
 | -- | ----- | -------- | ------------ | 
 | Adam | Smith | 2019-01-01 | $10 |
 | Bob | Armstrong | 2018-02-03| $20 |
 
-To create two documents prepared to send to each person.
+We could create two output documents prepared to send to each person.
 
-Jinja allows us to have more complicated templates with internal structure:
+This is no better than a simple mail merge, except the UNIX small-tools approach means we can take the output Markdown and feed it into an email, a document, a database anywhere. 
+
+Jinja2 will also allow us to have more complicated templates with internal structure, a simple example 
+shows how we can loop over a list of invoices and print a bullet item for each of them:
 
 examples/embedded_list.md
 ```
@@ -41,8 +73,10 @@ Hello {{ first_name }} {{ last_name }},
  {% endfor %}
 ```
 
-In this template we have a new value invoices, which can contain multiple invoices. Rather than a csv file format, we can use
-yaml and be able to store the data like:
+In this template we have a new value `invoices`, which can contain multiple entries, when we loop over each entry we can call 
+its values by their nested key value for example `invoice.invoice_num`. 
+
+Rather than a csv file format, we can use yaml and be able to store the data like:
 
 `examples/embedded_list.yml`
 ```
