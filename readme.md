@@ -3,7 +3,7 @@
 Roboprose is prose that you setup so that your computer (the robot) is able to write on your behalf. The below workflow
 will enable you to generate automatically filled contracts, agreements, invoices, letters, reports and more. 
 The idea here is to use templating tools to streamline business and data science workflows enabling you to create data driven 
-documents. In the below examples I use the command line tool `jinja2` from the [`jinja2-cli`](https://pypi.org/project/jinja2-cli/) python package. There are tools like `knitr` and RMarkdown which do this as well, this is a lightweight, small-tools approach that can be integrated with many other stystmes and tools. At the end I show an example of using pandoc to create styled Word documents or HTML web pages. 
+documents. In the below examples I use the command line tool `jinja2` from the [`jinja2-cli`](https://pypi.org/project/jinja2-cli/) python package. In the R community there are tools like `knitr` and RMarkdown which do this as well. Here we show a lightweight, "small-tools" approach that can be integrated with many other stystmes and tools. At the end I show an example of using pandoc to create styled Word documents, pandoc can create out put in [many other file formats (see the -t option at this link)](https://pandoc.org/MANUAL.html#general-options). 
 
 # Installing Jinja2-cli
 
@@ -58,7 +58,7 @@ If we looped over the rows in the following table:
 | Adam | Smith | 2019-01-01 | $10 |
 | Bob | Armstrong | 2018-02-03| $20 |
 
-We could create two output documents prepared to send to each person.
+We could use the above table to create two output documents prepared to send to each person.
 
 This is no better than a simple mail merge, except the UNIX small-tools approach means we can take the output Markdown and feed it into an email, a document, a database anywhere. 
 
@@ -75,10 +75,11 @@ Hello {{ first_name }} {{ last_name }},
  {% endfor %}
 ```
 
+
 In this template we have a new value `invoices`, which can contain multiple entries, when we loop over each entry we can call 
 its values by their nested key value for example `invoice.invoice_num`. 
 
-Rather than a csv file format, we can use yaml and be able to store the data like:
+Rather than a csv file format, we can use yaml and be able to store the data in a more readable form like:
 
 `examples/embedded_list.yml`
 ```
@@ -95,6 +96,18 @@ Putting it together:
 
 ```
 jinja2 examples/embedded_list.md examples/embedded_list.yml
+```
+
+Output:
+
+```
+Hello Adam Smith,
+
+ We see that you have the following invoices past due:
+
+ * #1024 - $10
+
+ * #2034 - $400
 ```
 
 ## Using if statements to include/exclude sections of prose
@@ -118,6 +131,11 @@ disclaimer: true
 Putting them together:
 ```
 $ jinja2 examples/logic.md examples/logic.yml
+```
+
+Output: 
+
+```
 * Product A will help your company to be more effective and make more money
 
 * We disclaim all liability
@@ -146,6 +164,18 @@ Proposal 2:
 
 ![](https://jduckles-dropshare.s3-us-west-2.amazonaws.com/Screen-Shot-2019-05-23-16-47-13.46.png)
 
+
+### Styling pandoc output
+
+To style pandoc output, you can take an existing Word (or OpenOffice) document and create a template which you tell pandoc to use as the style for the new document you're creating. This can allow you to apply the fonts you want, have a logo header/footer for letterhead/custom look and feel.
+
+Create a `reference.docx` file:
+
+```
+pandoc -o custom-reference.docx --print-default-data-file reference.docx
+# Edit custom-reference.docx in Word to manipulate styles and headers to be the way you want
+pandoc --reference-doc custom-reference.docx -f markdown proposal1.md -o proposal1.docx
+```
 
 ## Application areas
 
