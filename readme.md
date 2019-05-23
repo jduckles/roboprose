@@ -21,10 +21,11 @@ Sincerely,
 Accounting
 ```
 This would be able to merge a data file of the form:
-|first_name | last_name | overdue_date | amount_due |
-|----|-------|----------|--------------|-----------|
-|Adam | Smith | 2019-01-01 | $10 |
-|Bob | Armstrong | 2018-02-03| $20|
+
+| first_name | last_name | overdue_date | amount_due |
+| -- | ----- | -------- | ------------ | ----------- |
+| Adam | Smith | 2019-01-01 | $10 |
+| Bob | Armstrong | 2018-02-03| $20 |
 
 To create two documents prepared to send to each person.
 
@@ -102,6 +103,7 @@ pandoc -f markdown proposal2.md -o proposal2.docx
 ```
 
 Proposal 1:
+
 ![](https://jduckles-dropshare.s3-us-west-2.amazonaws.com/Screen-Shot-2019-05-23-16-46-17.86.png)
 
 Proposal 2:
