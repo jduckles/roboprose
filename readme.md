@@ -23,7 +23,7 @@ Accounting
 This would be able to merge a data file of the form:
 
 | first_name | last_name | overdue_date | amount_due |
-| -- | ----- | -------- | ------------ | ----------- |
+| -- | ----- | -------- | ------------ | 
 | Adam | Smith | 2019-01-01 | $10 |
 | Bob | Armstrong | 2018-02-03| $20 |
 
