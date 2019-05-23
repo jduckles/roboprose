@@ -1,0 +1,7 @@
+first_name: Adam
+last_name: Smith
+invoices:
+  - invoice_num: 1024
+    invoice_amount: $10
+  - invoice_num: 2034
+    invoice_amount: $400

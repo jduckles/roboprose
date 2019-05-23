@@ -1,0 +1,10 @@
+client_name: Busy Business
+company_name: Expert Consultants
+start_date: June 1, 2020
+end_date: April 23, 2021
+term: 90 
+currency: "usd"
+productA: true
+productB: true
+impact: true
+impact_percent: 25

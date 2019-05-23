@@ -1,0 +1,10 @@
+client_name: Carrot Crew
+company_name: The Best Consultants
+start_date: June 1, 2020
+end_date: April 23, 2021
+term: 180 
+currency: "nzd"
+productA: false
+productB: true
+impact: false
+impact_percent: 25
